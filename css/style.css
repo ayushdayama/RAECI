@@ -1,12 +1,12 @@
 body {
     background-color: #f2f2f2;
     font-family: Arial, sans-serif;
-    background: url('/resources/body-bg.png') no-repeat center center fixed;
+    background: url('https://firebasestorage.googleapis.com/v0/b/raeci0.appspot.com/o/body-bg.png?alt=media&token=78f2a3bc-4b9e-4b29-936f-9d0a401383b3') no-repeat center center fixed;
     background-size: cover;
 }
 
 .login-container {
-    background: url('/resources/bg.png') no-repeat center center fixed;
+    background: url('https://firebasestorage.googleapis.com/v0/b/raeci0.appspot.com/o/bg.png?alt=media&token=a448244e-5d1c-4efc-9886-7d24b819294a') no-repeat center center fixed;
     background-size: cover;
     width: 80%;
     height: 70%;
