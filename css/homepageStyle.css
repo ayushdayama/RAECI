@@ -3,7 +3,7 @@
 }
 
 body {
-    background: #fff url('/resources/CheckInBg.png') no-repeat center center fixed;
+    background: #fff url('./resources/CheckInBg.png') no-repeat center center fixed;
     font-family: 'Roboto', sans-serif;
 }
 
