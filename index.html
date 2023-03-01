@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>RAECI</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="./css/style.css">
+</head>
+
+<body>
+    <div class="login-container">
+        <img src="./resources/RAECI.png" alt="RAECI">
+        <form id="login-form">
+            <label for="user-select">Who's the exercise champ?</label>
+            <select id="user-select" name="user-select">
+                <option value="Radhika">Radhika</option>
+                <option value="Ayush">Ayush</option>
+            </select>
+            <label for="password">Secret Wala Keyword</label>
+            <input type="password" id="password" name="password">
+            <p id="error-msg"></p>
+            <button type="submit" onclick="submitForm()">Let's go</button>
+        </form>
+    </div>
+
+    <script src="./js/script.js"></script>
+</body>
+
+</html>
