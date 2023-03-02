@@ -55,9 +55,11 @@ function loadPastData() {
             const dateCell = newRow.insertCell(0);
             const timeCell = newRow.insertCell(1);
             const nameCell = newRow.insertCell(2);
+            const activityCell = newRow.insertCell(3);
             dateCell.innerHTML = doc.data().date;
             timeCell.innerHTML = doc.data().time;
             nameCell.innerHTML = doc.data().name;
+            activityCell.innerHTML = doc.data().activity;
         });
     });
 }
@@ -75,12 +77,14 @@ function handleCheckin() {
     const dateString = `${date.getDate().toString().padStart(2, '0')}/${(date.getMonth() + 1).toString().padStart(2, '0')}/${date.getFullYear()}`;
     const timeString = date.toLocaleTimeString('en-GB');
     const name = sessionStorage.getItem("selectedValue");
+    const activity = document.getElementById("activityDetails").value;
 
     const db = firebase.firestore();
     db.collection("checkins").add({
         date: dateString,
         time: timeString,
-        name: name
+        name: name,
+        activity: activity
     })
         .then(function (docRef) {
             console.log("Document written with ID: ", docRef.id);
@@ -95,7 +99,9 @@ function handleCheckin() {
     const dateCell = newRow.insertCell(0);
     const timeCell = newRow.insertCell(1);
     const nameCell = newRow.insertCell(2);
+    const activityCell = newRow.insertCell(3);
     dateCell.innerHTML = dateString;
     timeCell.innerHTML = timeString;
     nameCell.innerHTML = name;
+    activityCell.innerHTML = activity;
 }
