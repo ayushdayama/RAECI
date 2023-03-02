@@ -41,22 +41,37 @@ header {
 
 .checkin {
     margin-bottom: 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 100px;
+}
+
+#activityDetails {
+    width: 480px;
+    height: 40px;
+    border-radius: 20px 20px 5px 5px;
+    text-align: center;
+    border: none;
+    outline: none;
+    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.2);
 }
 
 #checkin-btn {
     cursor: pointer;
     display: block;
     margin: 0 auto;
-    width: 500px;
+    width: 483px;
     height: 50px;
-    margin-top: 100px;
+    margin-top: 10px;
     padding: 15px 50px;
     background-color: #3e8e41;
     outline: none;
     color: #fff;
     font-size: 20px;
     border: none;
-    border-radius: 20px;
+    border-radius: 5px 5px 20px 20px;
+    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.2);
 }
 
 #checkinHistory {
