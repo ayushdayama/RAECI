@@ -9,7 +9,7 @@ body {
     background: url('https://firebasestorage.googleapis.com/v0/b/raeci0.appspot.com/o/bg.png?alt=media&token=a448244e-5d1c-4efc-9886-7d24b819294a') no-repeat center center fixed;
     background-size: cover;
     width: 80%;
-    height: 70%;
+    height: 550px;
     max-width: 400px;
     margin: 0 auto;
     background-color: #fff;
@@ -61,11 +61,10 @@ input[type=password] {
     width: 94%;
     padding: 10px;
     margin-bottom: 20px;
-    border: 0.5px 0.5px 0.5px 0.5px;
-    border-color: #888;
+    border: none;
     border-radius: 20px;
     outline: none;
-    box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.2);
+    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.2);
 }
 
 input[type=password]:hover {
