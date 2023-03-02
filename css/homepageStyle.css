@@ -15,20 +15,28 @@ header {
 }
 
 #logOut {
+    cursor: pointer;
+    display: block;
     position: absolute;
     top: 0;
     right: 0;
-    color: #333;
-    margin-right: 20px;
     margin-top: 10px;
-    font-size: 24px;
-    text-decoration: none;
+    margin-right: 15px;
+    width: 100px;
+    height: 30px;
+    background-color: #3e8e41;
+    outline: none;
+    color: #fff;
+    font-size: 15px;
+    border: none;
+    border-radius: 20px 0px 20px 0px;
 }
 
 .greeting {
-    font-size: 30px;
+    font-size: 33px;
     text-align: center;
-    margin-top: 150px;
+    font-weight: 750;
+    margin-top: 50px;
 }
 
 .checkin {
