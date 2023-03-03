@@ -14,29 +14,66 @@ header {
     margin-top: 100px;
 }
 
+#changelog {
+    cursor: pointer;
+    display: inline-block;
+    top: 0;
+    left: 0;
+    margin-top: 20px;
+    margin-left: 15px;
+    margin-right: 5px;
+    width: 200px;
+    height: 50px;
+    background-color: #3e8e41;
+    outline: none;
+    color: #fff;
+    line-height: 45px;
+    font-size: 25px;
+    border: none;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 0px 20px 20px 0px;
+}
+
+#versionNum {
+    margin-top: 5px;
+    display: block;
+    font-family: Arial;
+    font-weight: bolder;
+    font-size: 47px;
+    background: linear-gradient(180deg, black 50%, #3e8e41 50%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+    text-align: center;
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, -90%);
+}
+
 #logOut {
     cursor: pointer;
     display: block;
     position: absolute;
     top: 0;
     right: 0;
-    margin-top: 10px;
+    margin-top: 20px;
     margin-right: 15px;
-    width: 100px;
-    height: 30px;
+    width: 200px;
+    height: 45px;
     background-color: #3e8e41;
     outline: none;
     color: #fff;
-    font-size: 15px;
+    font-size: 21px;
     border: none;
-    border-radius: 20px 0px 20px 0px;
+    border-radius: 20px 0px 0px 20px;
 }
 
 .greeting {
     font-size: 33px;
     text-align: center;
     font-weight: 750;
-    margin-top: 50px;
+    margin-top: 15px;
 }
 
 .checkin {
