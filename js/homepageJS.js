@@ -49,9 +49,21 @@ function changeHeader(selectedValue) {
 function loadPastData() {
     const db = firebase.firestore();
     const table = document.getElementById("checkinHistory");
+    const results = [];
+
     db.collection("checkins").get().then((querySnapshot) => {
         querySnapshot.forEach((doc) => {
-            const newRow = table.insertRow(1);
+            results.push(doc);
+        });
+
+        results.sort((a, b) => {
+            const aDateTime = new Date(`${a.data().date} ${a.data().time}`);
+            const bDateTime = new Date(`${b.data().date} ${b.data().time}`);
+            return bDateTime - aDateTime;
+        });
+
+        results.forEach((doc) => {
+            const newRow = table.insertRow(-1);
             const dateCell = newRow.insertCell(0);
             const timeCell = newRow.insertCell(1);
             const nameCell = newRow.insertCell(2);
