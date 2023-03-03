@@ -50,10 +50,17 @@ function loadPastData() {
     const db = firebase.firestore();
     const table = document.getElementById("checkinHistory");
     const results = [];
+    let radhikaCount = 0;
+    let ayushCount = 0;
 
     db.collection("checkins").get().then((querySnapshot) => {
         querySnapshot.forEach((doc) => {
             results.push(doc);
+            if (doc.data().name === "Radhika") {
+                radhikaCount++;
+            } else if (doc.data().name === "Ayush") {
+                ayushCount++;
+            }
         });
 
         results.sort((a, b) => {
@@ -73,6 +80,9 @@ function loadPastData() {
             nameCell.innerHTML = doc.data().name;
             activityCell.innerHTML = doc.data().activity;
         });
+
+        document.getElementById("counterNum1").innerHTML = radhikaCount;
+        document.getElementById("counterNum2").innerHTML = ayushCount;
     });
 }
 

@@ -4,14 +4,39 @@
 
 body {
     background: #fff url('https://firebasestorage.googleapis.com/v0/b/raeci0.appspot.com/o/CheckInBg.png?alt=media&token=4f99392f-3ec2-4bf7-b3e9-ec1cd6a7e0c4') no-repeat center center fixed;
+    background-repeat: no-repeat;
+    background-size: cover;
     font-family: 'Roboto', sans-serif;
+    animation: jiggleBg 6s ease-in-out infinite;
+}
+
+@keyframes jiggleBg {
+    0% {
+        background-position: 0 7px;
+    }
+
+    25% {
+        background-position: 7px 0;
+    }
+
+    50% {
+        background-position: 0 -7px;
+    }
+
+    75% {
+        background-position: -7px 0;
+    }
+
+    100% {
+        background-position: 0 7px;
+    }
 }
 
 header {
     color: #000;
     font-size: 50px;
     text-align: center;
-    margin-top: 150px;
+    margin-top: 260px;
 }
 
 ::-webkit-scrollbar {
@@ -97,6 +122,49 @@ header {
     margin-top: 15px;
 }
 
+#counterLogo1 {
+    width: 50px;
+    height: auto;
+    position: absolute;
+    margin-left: 4%;
+}
+
+#counterNum1 {
+    position: absolute;
+    margin-left: 5%;
+    margin-top: 85px;
+    font-size: 30px;
+    font-weight: bolder;
+}
+
+#counterOneParent {
+    margin-top: 20px;
+}
+
+#counterLogo2 {
+    width: 100px;
+    height: auto;
+    position: absolute;
+}
+
+#counterNum2 {
+    margin-right: -55px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin-top: 100px;
+    font-size: 30px;
+    font-weight: bolder;
+}
+
+#counterTwoParent {
+    margin-top: 110px;
+    margin-right: 150px;
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
 .checkin {
     margin-bottom: 50px;
     display: flex;
@@ -137,6 +205,7 @@ header {
     border-collapse: collapse;
     width: 60%;
     margin: 0 auto;
+    margin-top: 120px;
 }
 
 #checkinHistory th {
