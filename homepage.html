@@ -1,58 +1,44 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 
 <head>
-    <meta charset="UTF-8">
-    <title>Check-In</title>
-    <link rel="shortcut icon"
-        href="https://firebasestorage.googleapis.com/v0/b/raeci0.appspot.com/o/RAECI.png?alt=media&token=0fba04b4-5fad-417a-9afa-d1bb5b518082"
-        type="image/x-icon">
-    <link rel="stylesheet" href="./css/homepageStyle.css">
+  <title>RAECI - Daily Exercise Check-in</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="shortcut icon"
+    href="https://firebasestorage.googleapis.com/v0/b/raeci0.appspot.com/o/RAECI.png?alt=media&token=0fba04b4-5fad-417a-9afa-d1bb5b518082"
+    type="image/x-icon">
+  <link rel="stylesheet" href="./css/homepage.css">
 </head>
 
-<body onload="changeHeader(); loadPastData();">
-    <a href="https://firebasestorage.googleapis.com/v0/b/raeci0.appspot.com/o/Changelog.txt?alt=media&token=eee3be99-af07-4f44-b0f5-35f8380071b6"
-        id="changelog" target="_blank">Changelog</a>
-        <div id="counterOneParent">
-            <img src="https://firebasestorage.googleapis.com/v0/b/raeci0.appspot.com/o/R.png?alt=media&token=8352c5b9-52e1-47b6-973b-4a7bba2585eb" id="counterLogo1">
-            <p id="counterNum1"></p>
-        </div>
-        <p id="versionNum"><img src="https://firebasestorage.googleapis.com/v0/b/raeci0.appspot.com/o/RAECI.png?alt=media&token=0fba04b4-5fad-417a-9afa-d1bb5b518082"
-            alt="RAECI" id="raeciLogoHomepage"><br><br>v1.7</p>
-    <button type="button" id="logOut" onclick="logout()">Logout</button>
-    <div id="counterTwoParent">
-        <img src="https://firebasestorage.googleapis.com/v0/b/raeci0.appspot.com/o/A.png?alt=media&token=e4be2930-bf3b-4cfb-a906-db90624f8854" id="counterLogo2">
-        <p id="counterNum2"></p>
-    </div>
+<body onload="changeHeader()">
+  <header>
+    <img
+      src="https://firebasestorage.googleapis.com/v0/b/raeci0.appspot.com/o/RAECI.png?alt=media&token=0fba04b4-5fad-417a-9afa-d1bb5b518082"
+      alt="RAECI Logo">
+      <h1 id="welcomeHeader"></h1>
+  </header>
 
-    <header>
-        <h1 id="welcomeHeader"></h1>
-    </header>
+  <div class="check-in-container">
+    <form id="check-in-form">
+      <label for="activity">What exercise did you do today?</label>
+      <input type="text" id="activity" name="activity" placeholder="e.g. Running for 30 minutes">
+      <button type="submit" onclick="handleCheckin()">Check-in</button>
+    </form>
+    <p id="ackMsg"></p>
+    <p id="errMsg"></p>
+  </div>
 
-    <div>
-        <h1 class="greeting">Let's check in the good work done</h1>
-    </div>
+  <div class="options-container">
+    <a href="Reports.html" id="reportsLink">Reports</a>
+    <a href="https://firebasestorage.googleapis.com/v0/b/raeci0.appspot.com/o/Changelog.txt?alt=media&token=21ae5947-cb26-49df-abb5-cdf31c09053b" id="changelogLink" target="_blank">Changelog</a>
+    <button id="logOutLink" onclick="logout()">Log out</a>
+  </div>
 
-    <div class="checkin">
-        <input type="text" id="activityDetails" placeholder="What was your activity of the day?" />
-        <button id="checkin-btn" onclick="handleCheckin()">Check-In</button>
-    </div>
-
-    <table id="checkinHistory">
-        <tr>
-            <th id="tableHeader">Date</th>
-            <th id="tableHeader">Time</th>
-            <th id="tableHeader">Name</th>
-            <th id="tableHeader">Activity</th>
-        </tr>
-    </table>
-
-    <script src="https://www.gstatic.com/firebasejs/7.21.0/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/7.21.0/firebase-auth.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/7.21.0/firebase-firestore.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/7.21.0/firebase-database.js"></script>
-    <script src="./js/homepageJS.js"></script>
-
+  <script src="https://www.gstatic.com/firebasejs/7.21.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.21.0/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.21.0/firebase-firestore.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.21.0/firebase-database.js"></script>
+  <script src="./js/homepageJS.js"></script>
 </body>
 
 </html>

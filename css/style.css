@@ -1,6 +1,8 @@
+@import url('https://fonts.googleapis.com/css2?family=Comfortaa&display=swap');
+
 body {
     background-color: #f2f2f2;
-    font-family: Arial, sans-serif;
+    font-family: 'Comfortaa', cursive;
     background: url('https://firebasestorage.googleapis.com/v0/b/raeci0.appspot.com/o/body-bg.png?alt=media&token=78f2a3bc-4b9e-4b29-936f-9d0a401383b3') no-repeat center center fixed;
     background-size: cover;
 }
@@ -39,7 +41,6 @@ h2 {
 
 label {
     display: block;
-    font-family: Arial;
     font-size: 16px;
     font-weight: bold;
     color: #444;
@@ -49,6 +50,7 @@ label {
 select {
     width: 100%;
     padding: 10px;
+    font-family: 'Comfortaa', cursive;
     margin-bottom: 20px;
     border: none;
     background-color: #fff;

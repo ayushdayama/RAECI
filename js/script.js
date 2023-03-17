@@ -18,16 +18,6 @@ var selectedValue;
 // Store the selected value in Firebase for the current session
 var sessionId = Date.now().toString();
 
-function checkLogin() {
-    if (localStorage.getItem('loggedIn') === 'true') {
-        window.location.href = "homepage.html?sessionId=" + sessionId;
-    }
-}
-
-window.onload = function () {
-    checkLogin();
-};
-
 const loginForm = document.getElementById('login-form');
 
 loginForm.addEventListener('submit', (e) => {
