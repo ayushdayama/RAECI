@@ -123,6 +123,10 @@ button[type=submit]:hover,
     transform: scale(1.1);
 }
 
+#logOutLink {
+    margin-top: 10%;
+}
+
 #ackMsg {
     color: darkgreen;
     font-weight: bold;

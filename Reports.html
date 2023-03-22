@@ -18,7 +18,11 @@
         <h1>RAECI - Reports</h1>
     </header>
     <main>
+        <div>
         <p id="dateSortErrorMessage">Date sorting is disabled for maintenance</p>
+        <button type="button" id="go-back-button" onclick="window.history.back();">ᐊ Go Back</button>
+        </div>
+
         <form id="search-form">
             <label for="name">Name:</label>
             <select id="name-select">
@@ -30,8 +34,7 @@
             <input type="date" id="from-date" hidden disabled>
             <label for="to-date" hidden>To:</label>
             <input type="date" id="to-date" hidden disabled>
-            <button type="submit" id="search-button"> Lookup 📝</button>
-            <button type="button" id="go-back-button" onclick="window.history.back();">← Go Back</button>
+            <button type="submit" id="search-button"> Lookup 📝</button><br>
         </form>
         <table id="reports-table">
             <thead>
