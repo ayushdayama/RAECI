@@ -96,3 +96,11 @@ function handleCheckin() {
     });
   document.getElementById("ackMsg").innerHTML = "Done Champ!";
 }
+
+window.addEventListener("orientationchange", function () {
+  if (window.orientation == 90 || window.orientation == -90) {
+    document.getElementById("landscape-message").style.display = "block";
+  } else {
+    document.getElementById("landscape-message").style.display = "none";
+  }
+});
