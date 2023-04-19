@@ -104,19 +104,19 @@ input[type=text] {
 }
 
 button[type=submit] {
-    background-color: #4CAF50;
+    background-color: #18a11d;
     color: #fff;
     border: none;
     border-radius: 20px;
-    padding: 10px 20px;
-    font-size: 16px;
+    padding: 8px 16px;
+    font-size: 14px;
     cursor: pointer;
     transition: transform 0.2s ease-in-out;
 }
 
 .options-container {
     position: absolute;
-    top: calc(78% + 30px);
+    top: calc(83% + 30px);
     left: 0;
     right: 0;
     margin: auto;
@@ -143,12 +143,12 @@ button[type=submit] {
 #reportsLink,
 #changelogLink {
     background-color: #4CAF50;
-    margin-right: 10px;
+    margin-right: 5px;
     color: #fff;
     border: none;
     border-radius: 20px;
-    padding: 10px 20px;
-    font-size: 16px;
+    padding: 9px 18px;
+    font-size: 14px;
     cursor: pointer;
     transition: transform 0.2s cubic-bezier(0.18, 0.89, 0.32, 1.28);
     text-decoration: none;

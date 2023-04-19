@@ -15,7 +15,7 @@
   <div id="landscape-message">
     <p>Please rotate your device to portrait mode.</p>
   </div>
-  
+
   <div id="logOutDiv">
     <button id="logOutLink" onclick="logout()">Log out <i class="fa fa-sign-out"></i></a>
   </div>
@@ -24,22 +24,22 @@
     <img
       src="https://firebasestorage.googleapis.com/v0/b/raeci0.appspot.com/o/RAECI.png?alt=media&token=0fba04b4-5fad-417a-9afa-d1bb5b518082"
       alt="RAECI Logo">
-      <h1 id="welcomeHeader"></h1>
+    <h1 id="welcomeHeader" unselectable="on"></h1>
   </header>
 
   <div class="check-in-container">
     <form id="check-in-form">
-      <label for="activity">What exercise did you do today?</label>
+      <label for="activity">Your workout, your story</label>
       <input type="text" id="activity" name="activity" placeholder="e.g. Running for 30 minutes">
-      <button type="submit" onclick="handleCheckin()">Check-in</button>
+      <button type="submit" onclick="handleCheckin()">✅ Check-in</button>
     </form>
     <p id="ackMsg"></p>
     <p id="errMsg"></p>
   </div>
 
   <div class="options-container">
-    <a href="Reports.html" id="reportsLink">Reports</a>
-    <a href="https://firebasestorage.googleapis.com/v0/b/raeci0.appspot.com/o/Changelog.txt?alt=media&token=21ae5947-cb26-49df-abb5-cdf31c09053b" id="changelogLink" target="_blank">Changelog</a>
+    <a href="Reports.html" id="reportsLink">📝 Reports</a>
+    <a href="https://shorturl.at/sCW01" id="changelogLink" target="_blank">🔮 Changelog</a>
   </div>
 
   <script src="https://www.gstatic.com/firebasejs/7.21.0/firebase-app.js"></script>

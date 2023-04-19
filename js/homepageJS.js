@@ -80,16 +80,17 @@ function handleCheckin() {
   const timeString = date.toLocaleTimeString('en-GB');
   const name = sessionStorage.getItem("selectedValue");
   const activity = document.getElementById("activity").value;
+  const docId = date.toLocaleString('en-GB', { day: '2-digit', month: '2-digit', year: 'numeric', hour: '2-digit', minute: '2-digit' }).replace(/[/: ]/g, "");
 
   const db = firebase.firestore();
-  db.collection("checkins").add({
+  db.collection("checkins").doc(name + ": " + docId).set({
     date: dateString,
     time: timeString,
     name: name,
     activity: activity
   })
-    .then(function (docRef) {
-      console.log("Document written with ID: ", docRef.id);
+    .then(function () {
+      console.log("Document written with ID: ", docId);
     })
     .catch(function (error) {
       console.error("Error adding document: ", error);
