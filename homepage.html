@@ -17,6 +17,8 @@
   </div>
 
   <div id="logOutDiv">
+    <a href="Reports.html" id="reportsLink">📝 Reports</a>
+    <a href="https://shorturl.at/aBITU" id="changelogLink" target="_blank">🔮 Changelog</a>
     <button id="logOutLink" onclick="logout()">Log out <i class="fa fa-sign-out"></i></a>
   </div>
 
@@ -30,16 +32,12 @@
   <div class="check-in-container">
     <form id="check-in-form">
       <label for="activity">Your workout, your story</label>
-      <input type="text" id="activity" name="activity" placeholder="e.g. Running for 30 minutes">
+      <p id="quoteText"></p>
+      <p id="quoteAuthor"></p>
+      <input type="text" id="activity" name="activity" placeholder="E.g.: Cardio for 30 minutes">
       <button type="submit" onclick="handleCheckin()">✅ Check-in</button>
     </form>
     <p id="ackMsg"></p>
-    <p id="errMsg"></p>
-  </div>
-
-  <div class="options-container">
-    <a href="Reports.html" id="reportsLink">📝 Reports</a>
-    <a href="https://shorturl.at/sCW01" id="changelogLink" target="_blank">🔮 Changelog</a>
   </div>
 
   <script src="https://www.gstatic.com/firebasejs/7.21.0/firebase-app.js"></script>

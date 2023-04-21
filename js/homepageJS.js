@@ -48,7 +48,21 @@ function checkSessionStorage() {
 }
 
 function changeHeader(selectedValue) {
-  document.getElementById("welcomeHeader").innerHTML = "WELCOME<br>" + selectedNameInDropDown;
+  document.getElementById("welcomeHeader").innerHTML = "नमस्ते<br>" + selectedNameInDropDown;
+  const url = `https://api.quotable.io/random/?tags=exercise|motivation|happiness|Inspiration|determined|focus|clarity|presence|accomplish|balance|courage|belief|gratitude|joy|imagination|curiosity|priority|honesty|mindfulness|challenge|passion|commitment|nurture|zeal`;
+
+  fetch(url, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  })
+    .then(response => response.json())
+    .then(data => {
+      document.querySelector("#quoteText").innerHTML = `"${data.content}"`,
+        document.querySelector("#quoteAuthor").innerHTML = `- ${data.author}     `
+    })
+    .catch(error => console.error('Error: ', error));
 }
 
 const form = document.querySelector("#check-in-form");
@@ -57,7 +71,6 @@ form.addEventListener("submit", (e) => {
   e.preventDefault();
   const activity = document.querySelector("#activity").value;
   console.log(activity);
-  // do something with the activity data, such as saving to a database
   form.reset();
 });
 
@@ -71,10 +84,9 @@ function logout() {
 
 function handleCheckin() {
   if (document.getElementById("activity").value === "") {
-    document.getElementById("errMsg").innerHTML = "Oopsie! Don't forget your activity details! 😄";
+    document.getElementById("ackMsg").innerHTML = "Oopsie! Don't forget your activity details! 😄";
     return;
   }
-  document.getElementById("errMsg").innerHTML = null;
   const date = new Date();
   const dateString = `${date.getDate().toString().padStart(2, '0')}/${(date.getMonth() + 1).toString().padStart(2, '0')}/${date.getFullYear()}`;
   const timeString = date.toLocaleTimeString('en-GB');
