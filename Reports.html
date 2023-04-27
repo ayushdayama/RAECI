@@ -19,23 +19,25 @@
     </header>
     <main>
         <div>
-        <p id="dateSortErrorMessage">Date sorting is disabled for maintenance</p>
-        <button type="button" id="go-back-button" onclick="window.history.back();">ᐊ Go Back</button>
+            <button type="button" id="go-back-button" onclick="window.history.back();">ᐊ Back</button>
         </div>
 
-        <form id="search-form">
-            <label for="name">Name:</label>
-            <select id="name-select">
-                <option value="">Both Cuties</option>
-                <option value="Radhika">Radhika</option>
-                <option value="Ayush">Ayush</option>
-            </select>
-            <label for="from-date" hidden>From:</label>
-            <input type="date" id="from-date" hidden disabled>
-            <label for="to-date" hidden>To:</label>
-            <input type="date" id="to-date" hidden disabled>
-            <button type="submit" id="search-button"> Lookup 📝</button><br>
-        </form>
+        <div id="form-container">
+            <form id="search-form">
+                <label for="name">Name:</label>
+                <select id="name-select">
+                    <option value="">Both Cuties</option>
+                    <option value="Radhika">Radhika</option>
+                    <option value="Ayush">Ayush</option>
+                </select>
+                <button type="submit" id="search-button"> Lookup 📝</button><br>
+            </form>
+        </div>
+
+        <div id="pagination-container">
+            <!-- pagination will be added here -->
+        </div>
+
         <table id="reports-table">
             <thead>
                 <tr>

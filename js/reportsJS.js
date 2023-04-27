@@ -18,9 +18,78 @@ const db = firebase.firestore();
 // Get references to the form elements
 const reportsTable = document.getElementById("reports-table");
 const nameSelect = document.getElementById("name-select");
-const fromDate = document.getElementById("from-date");
-const toDate = document.getElementById("to-date");
 const searchForm = document.getElementById("search-form");
+const pageSizeOptions = [7, 14, 30, 90, 180];
+let currentPage = 1;
+let pageSize = pageSizeOptions[0];
+
+function renderTableRows(reports) {
+    const tbody = reportsTable.querySelector("tbody");
+    tbody.innerHTML = "";
+    reports.forEach((report) => {
+        const tr = document.createElement("tr");
+        tr.innerHTML = `
+        <td>${report.date.toLocaleDateString()}</td>
+        <td>${report.time.toLocaleTimeString()}</td>
+        <td>${report.name}</td>
+        <td>${report.activity}</td>
+      `;
+        tbody.appendChild(tr);
+    });
+}
+
+function renderPagination(reports) {
+    const paginationContainer = document.createElement("div");
+    paginationContainer.id = "pagination-container";
+    paginationContainer.className = "pagination-container";
+    const totalPages = Math.ceil(reports.length / pageSize);
+
+    const pageSizeSelect = document.createElement("select");
+    pageSizeOptions.forEach((option) => {
+        const optionElement = document.createElement("option");
+        optionElement.textContent = option;
+        if (option === pageSize) {
+            optionElement.selected = true;
+        }
+        pageSizeSelect.appendChild(optionElement);
+    });
+    pageSizeSelect.addEventListener("change", () => {
+        pageSize = Number(pageSizeSelect.value);
+        currentPage = 1;
+        renderTableRows(reports.slice(0, pageSize));
+        renderPagination(reports);
+    });
+
+    const previousButton = document.createElement("button");
+    previousButton.textContent = "Previous";
+    previousButton.disabled = currentPage === 1;
+    previousButton.addEventListener("click", () => {
+        currentPage -= 1;
+        renderTableRows(reports.slice((currentPage - 1) * pageSize, currentPage * pageSize));
+        renderPagination(reports);
+    });
+
+    const nextButton = document.createElement("button");
+    nextButton.textContent = "Next";
+    nextButton.disabled = currentPage === totalPages;
+    nextButton.addEventListener("click", () => {
+        currentPage += 1;
+        renderTableRows(reports.slice((currentPage - 1) * pageSize, currentPage * pageSize));
+        renderPagination(reports);
+    });
+
+    paginationContainer.appendChild(pageSizeSelect);
+    paginationContainer.appendChild(previousButton);
+    paginationContainer.appendChild(nextButton);
+
+    const oldPagination = document.getElementById("pagination-container");
+    if (oldPagination !== null) {
+        oldPagination.parentNode.replaceChild(paginationContainer, oldPagination);
+    } else {
+        const tableContainer = document.getElementById("table-container");
+        tableContainer.parentNode.insertBefore(paginationContainer, tableContainer.nextSibling);
+    }
+}
 
 function getReports() {
     // Get a reference to the checkins collection
@@ -31,16 +100,7 @@ function getReports() {
     if (nameSelect.value) {
         query = query.where("name", "==", nameSelect.value);
     }
-    if (fromDate.value) {
-        const startDate = new Date(fromDate.value);
-        startDate.setHours(0, 0, 0, 0);
-        query = query.where("timestamp", ">=", startDate.getTime());
-    }
-    if (toDate.value) {
-        const endDate = new Date(toDate.value);
-        endDate.setHours(23, 59, 59, 999);
-        query = query.where("timestamp", "<=", endDate.getTime());
-    }
+
     // Fetch the documents that match the query
     query.get().then((snapshot) => {
         // Convert the snapshot into an array of report objects and sort them by date and time in descending order
@@ -79,12 +139,6 @@ function getReports() {
             if (nameSelect.value && report.name !== nameSelect.value) {
                 return false;
             }
-            if (fromDate.value && report.date < new Date(fromDate.value)) {
-                return false;
-            }
-            if (toDate.value && report.date > new Date(toDate.value)) {
-                return false;
-            }
             return true;
         });
 
@@ -102,6 +156,9 @@ function getReports() {
             const activityCell = row.insertCell();
             activityCell.textContent = report.activity;
         });
+
+        renderTableRows(filteredReports.slice(0, pageSize));
+        renderPagination(filteredReports);
     }).catch((error) => {
         console.error("Error getting documents: ", error);
     });
@@ -111,10 +168,30 @@ searchForm.addEventListener("submit", (event) => {
     getReports();
 });
 
+function updatePaginationButtons(pageCount) {
+    // get the pagination container element
+    const paginationContainer = document.querySelector('.pagination');
+
+    // remove existing pagination buttons
+    paginationContainer.innerHTML = '';
+
+    // add new pagination buttons based on the new page count
+    for (let i = 1; i <= pageCount; i++) {
+        const button = document.createElement('button');
+        button.textContent = i;
+        paginationContainer.appendChild(button);
+    }
+}
+
+// example function that handles drop-down value changes
+function handleDropdownChange(event) {
+    const selectedValue = event.target.value;
+    const pageCount = calculatePageCount(selectedValue);
+    updatePaginationButtons(pageCount);
+}
+
 function resetForm() {
     nameSelect.value = "";
-    fromDate.value = "";
-    toDate.value = "";
 }
 
 resetForm(); // Call resetForm to clear the form on page load.
