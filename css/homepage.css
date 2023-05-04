@@ -92,7 +92,9 @@ label {
 }
 
 input[type=text] {
-    width: 100%;
+    text-align: center;
+    font-weight: 500;
+    width: 48%;
     height: auto;
     padding: 10px;
     border: none;
@@ -104,6 +106,7 @@ input[type=text] {
 }
 
 button[type=submit] {
+    width: 100%;
     background-color: #18a11d;
     color: #fff;
     border: none;

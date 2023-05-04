@@ -69,7 +69,7 @@ const form = document.querySelector("#check-in-form");
 
 form.addEventListener("submit", (e) => {
   e.preventDefault();
-  const activity = document.querySelector("#activity").value;
+  const activity = "Exercise: " + document.querySelector("#exercise").value + ", Learning: " + document.querySelector("#learning").value;
   console.log(activity);
   form.reset();
 });
@@ -83,7 +83,7 @@ function logout() {
 }
 
 function handleCheckin() {
-  if (document.getElementById("activity").value === "") {
+  if (document.getElementById("exercise").value === "" || document.getElementById("learning") === "") {
     document.getElementById("ackMsg").innerHTML = "Oopsie! Don't forget your activity details! 😄";
     return;
   }
@@ -91,7 +91,7 @@ function handleCheckin() {
   const dateString = `${date.getDate().toString().padStart(2, '0')}/${(date.getMonth() + 1).toString().padStart(2, '0')}/${date.getFullYear()}`;
   const timeString = date.toLocaleTimeString('en-GB');
   const name = sessionStorage.getItem("selectedValue");
-  const activity = document.getElementById("activity").value;
+  const activity = "Exercise: " + document.querySelector("#exercise").value + " | Learning: " + document.querySelector("#learning").value;
   const docId = date.toLocaleString('en-GB', { day: '2-digit', month: '2-digit', year: 'numeric', hour: '2-digit', minute: '2-digit' }).replace(/[/: ]/g, "");
 
   const db = firebase.firestore();
