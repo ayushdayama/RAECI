@@ -1,4 +1,3 @@
-// Add the check-in data to the Firestore database
 const firebaseConfig = {
     apiKey: "AIzaSyAVW7vzCOMunDqJylPHgtaJytnYhUJRMzQ",
     authDomain: "raeci0.firebaseapp.com",
@@ -12,31 +11,27 @@ const firebaseConfig = {
 
 // Init Firebase and Ref to DB
 firebase.initializeApp(firebaseConfig);
-var dropdown = document.getElementById("user-select");
-var selectedValue;
+const db = firebase.firestore();
 
-// Store the selected value in Firebase for the current session
-var sessionId = Date.now().toString();
-
+// Store the selected value in Firestore for the current session
+const sessionId = Date.now().toString();
 const loginForm = document.getElementById('login-form');
 
-loginForm.addEventListener('submit', (e) => {
+loginForm.addEventListener('submit', async (e) => {
     e.preventDefault();
 
     const selectedUser = document.getElementById('user-select').value;
     const passwordValue = document.getElementById('password').value;
+    const userRef = db.collection('loginCredentials').doc(selectedUser);
+    const doc = await userRef.get();
 
-    firebase.database().ref('sessions/' + sessionId).set({
-        selectedValue: selectedUser
-    });
-
-    if ((selectedUser === 'Radhika' && passwordValue === '10xRadhika') || (selectedUser === 'Ayush' && passwordValue === '10xAyush')) {
+    if (doc.exists && doc.data().password === passwordValue) {
         localStorage.setItem('loggedIn', 'true');
         localStorage.setItem('user', selectedUser);
-        sessionStorage.setItem("selectedValue", selectedUser);
-        window.location.href = "homepage.html?sessionId=" + sessionId;
+        sessionStorage.setItem('selectedValue', selectedUser);
+        window.location.href = 'homepage.html?sessionId=' + sessionId;
     } else {
         const errorMsg = document.getElementById('error-msg');
-        errorMsg.textContent = 'Invalid credentials. Please try again.';
+        errorMsg.textContent = 'Aw Snap! Champ code is incorrect.';
     }
 });

@@ -28,6 +28,10 @@ body {
 }
 
 header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -35,6 +39,7 @@ header {
     color: #fff;
     text-align: center;
     padding: 1em;
+    z-index: 9999;
 }
 
 #logo {
@@ -49,6 +54,7 @@ h1 {
 }
 
 main {
+    margin-top: 85px;
     padding: 1em;
 }
 

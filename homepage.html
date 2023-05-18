@@ -12,13 +12,18 @@
 </head>
 
 <body onload="changeHeader()">
+  <div id="loading-icon">
+    <h3>One Moment Champ...<br/><br/>
+    <i class="fa fa-spinner fa-spin"></i></h3>
+  </div>
+
   <div id="landscape-message">
     <p>Please rotate your device to portrait mode.</p>
   </div>
 
   <div id="logOutDiv">
     <a href="Reports.html" id="reportsLink">📝 Reports</a>
-    <a href="https://shorturl.at/mpELZ" id="changelogLink" target="_blank">🔮 Changelog</a>
+    <a href="changelog.html" id="changelogLink">🔮 Changelog</a>
     <button id="logOutLink" onclick="logout()">Log out <i class="fa fa-sign-out"></i></a>
   </div>
 

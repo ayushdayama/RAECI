@@ -117,3 +117,10 @@ window.addEventListener("orientationchange", function () {
     document.getElementById("landscape-message").style.display = "none";
   }
 });
+
+window.onload = function () {
+  var loadingIcon = document.getElementById("loading-icon");
+  setTimeout(function () {
+    loadingIcon.style.display = "none";
+  }, 1500);
+};

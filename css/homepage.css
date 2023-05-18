@@ -169,7 +169,7 @@ button[type=submit] {
     #changelogLink {
         order: 2;
     }
-    
+
     #logOutLink {
         order: 3;
         margin-right: 5px;
@@ -201,4 +201,19 @@ button[type=submit]:hover,
     text-align: right;
     font-size: 14px;
     font-style: italic;
+}
+
+#loading-icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    text-align: center;
+    top: 0;
+    left: 0;
+    width: 100%;
+    color: #f2f2f2;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    z-index: 9999;
 }
