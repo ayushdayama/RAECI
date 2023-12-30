@@ -3,7 +3,7 @@
 body {
     background-color: #f2f2f2;
     font-family: 'Comfortaa', cursive;
-    background: url('https://firebasestorage.googleapis.com/v0/b/raeci0.appspot.com/o/body-bg.png?alt=media&token=78f2a3bc-4b9e-4b29-936f-9d0a401383b3') no-repeat center center fixed;
+    background: url('https://firebasestorage.googleapis.com/v0/b/raeci0.appspot.com/o/LoginBackground.png?alt=media&token=39b77b73-6f97-47db-b521-3cf7cb94f6d9') no-repeat center center fixed;
     background-size: cover;
 }
 
@@ -45,6 +45,7 @@ label {
     font-weight: bold;
     color: #444;
     margin-bottom: 10px;
+    text-align: center;
 }
 
 select {
@@ -57,6 +58,7 @@ select {
     border-radius: 20px;
     outline: none;
     box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.2);
+    text-align: center;
 }
 
 input[type=password] {
@@ -67,6 +69,7 @@ input[type=password] {
     border-radius: 20px;
     outline: none;
     box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.2);
+    text-align: center;
 }
 
 input[type=password]:hover {

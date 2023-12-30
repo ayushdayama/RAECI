@@ -1,20 +1,29 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
   <title>RAECI - Daily Exercise Check-in</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="shortcut icon"
-    href="https://firebasestorage.googleapis.com/v0/b/raeci0.appspot.com/o/RAECI.png?alt=media&token=0fba04b4-5fad-417a-9afa-d1bb5b518082"
-    type="image/x-icon">
-  <link rel="stylesheet" href="./css/homepage.css">
+  <link rel="shortcut icon" id="shortcut-icon" type="image/x-icon">
+  <link rel="stylesheet" href="./css/homepage.css" media="print" onload="this.media='all'">
+  <noscript>
+    <link rel="stylesheet" href="./css/homepage.css">
+  </noscript>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 
 <body onload="changeHeader()">
+  <video autoplay muted loop id="myVideo">
+    <source
+      src="https://firebasestorage.googleapis.com/v0/b/raeci0.appspot.com/o/HomepageBackground1.mp4?alt=media&token=bfe94e13-6723-4410-a6e9-9f9a669eb636"
+      type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
+
   <div id="loading-icon">
-    <h3>One Moment Champ...<br/><br/>
-    <i class="fa fa-spinner fa-spin"></i></h3>
+    <h3>One Moment Champ...<br /><br />
+      <i class="fa fa-spinner fa-spin"></i>
+    </h3>
   </div>
 
   <div id="landscape-message">
@@ -28,29 +37,27 @@
   </div>
 
   <header>
-    <img
-      src="https://firebasestorage.googleapis.com/v0/b/raeci0.appspot.com/o/RAECI.png?alt=media&token=0fba04b4-5fad-417a-9afa-d1bb5b518082"
-      alt="RAECI Logo">
+    <img id="raeciLogo" alt="RAECI Logo">
     <h1 id="welcomeHeader" unselectable="on"></h1>
   </header>
 
   <div class="check-in-container">
     <form id="check-in-form">
-      <label for="activity">Your workout, your story</label>
+      <label for="learning">Your study, your story</label>
       <p id="quoteText"></p>
       <p id="quoteAuthor"></p>
-      <input type="text" id="exercise" name="activity" placeholder="Exercise">
+      <input type="text" id="exercise" name="activity" placeholder="Exercise" hidden>
       <input type="text" id="learning" name="activity" placeholder="Learning">
-      <button type="submit" onclick="handleCheckin()">✅ Check-in</button>
+      <button type="submit" onclick="handleCheckin()" class="custom-btn">✅ Check-in</button>
     </form>
     <p id="ackMsg"></p>
   </div>
 
-  <script src="https://www.gstatic.com/firebasejs/7.21.0/firebase-app.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/7.21.0/firebase-auth.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/7.21.0/firebase-firestore.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/7.21.0/firebase-database.js"></script>
-  <script src="./js/homepageJS.js"></script>
+  <script async src="https://www.gstatic.com/firebasejs/7.21.0/firebase-app.js"></script>
+  <script async src="https://www.gstatic.com/firebasejs/7.21.0/firebase-auth.js"></script>
+  <script async src="https://www.gstatic.com/firebasejs/7.21.0/firebase-firestore.js"></script>
+  <script async src="https://www.gstatic.com/firebasejs/7.21.0/firebase-database.js"></script>
+  <script async src="./js/homepageJS.js"></script>
 </body>
 
 </html>

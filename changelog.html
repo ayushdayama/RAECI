@@ -5,17 +5,15 @@
     <meta charset="UTF-8">
     <title>RAECI - Reports</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="shortcut icon"
-        href="https://firebasestorage.googleapis.com/v0/b/raeci0.appspot.com/o/RAECI.png?alt=media&token=0fba04b4-5fad-417a-9afa-d1bb5b518082"
-        type="image/x-icon">
+    <link rel="shortcut icon" id = "shortcut-icon" type="image/x-icon">
     <link rel="stylesheet" href="./css/changelogStyle.css">
 </head>
 
 <body>
-    <header>
-        <img src="https://firebasestorage.googleapis.com/v0/b/raeci0.appspot.com/o/RAECI.png?alt=media&token=0fba04b4-5fad-417a-9afa-d1bb5b518082"
-            alt="RAECI Logo" id="logo">
+    <header id="header-container">
+        <img id="raeciLogo" alt="RAECI Logo">
         <h2>RAECI - Changelog</h2>
+        <button type="button" id="go-back-button" onclick="window.history.back();">ᐊ Back</button>
     </header>
     <button id="add-log-btn" class="add-log-btn" alt="Add a new log">+</button>
     <table id="changelogTable">

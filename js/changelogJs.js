@@ -13,8 +13,70 @@ const firebaseConfig = {
 // Init Firebase and Ref to DB
 firebase.initializeApp(firebaseConfig);
 
-const addButton = document.getElementById("add-log-btn");
+// Initialize the cache object
+let imageCache = {};
 
+// Update links for multiple tags
+updateImage('raeciLogo', 'raeci-logo', 'src');
+updateImage('shortcut-icon', 'raeci-logo', 'href');
+
+// Call the function to get the URL dynamically
+function updateImage(elementId, key, attrib) {
+    // Check if the image is already in the cache
+    if (imageCache.hasOwnProperty(key)) {
+        document.getElementById(elementId)[attrib] = imageCache[key];
+    } else {
+        fetchDataFromFirebaseDatabase('image-links', 'image-links', key)
+            .then((imageUrl) => {
+                // Update the element with the fetched image URL
+                document.getElementById(elementId)[attrib] = imageUrl;
+
+                // Cache the image URL for future use
+                imageCache[key] = imageUrl;
+            })
+            .catch((error) => {
+                console.error("Error fetching image URL for element ID", elementId, ":", error);
+            });
+    }
+}
+
+/**
+ * Description - Get a value from Firebase Database
+ * @param {String} collectionName - Collection Name
+ * @param {String} documentName - Document Name
+ * @param {String} key - Key's Name that has the required value
+ * @returns {Promise} A promise that resolves to the fetched value
+ */
+function fetchDataFromFirebaseDatabase(collectionName, documentName, key) {
+    return new Promise((resolve, reject) => {
+        const db = firebase.firestore();
+        const docRef = db.collection(collectionName).doc(documentName);
+
+        // Retrieve the document data
+        docRef.get().then((doc) => {
+            if (doc.exists) {
+                const data = doc.data();
+
+                // Check if the key exists in the document
+                if (data.hasOwnProperty(key)) {
+                    const result = data[key];
+
+                    // Resolve the promise with the result
+                    resolve(result);
+                } else {
+                    reject(new Error("Key not found in the document!"));
+                }
+            } else {
+                reject(new Error("No such document!"));
+            }
+        }).catch((error) => {
+            // Reject the promise with the error
+            reject(error);
+        });
+    });
+}
+
+const addButton = document.getElementById("add-log-btn");
 addButton.addEventListener("click", () => {
     // Create a modal popup
     const modal = document.createElement("div");
@@ -145,8 +207,8 @@ function loadDataFromFirebase() {
     var tableBody = document.getElementById('changelogTable').getElementsByTagName('tbody')[0];
     tableBody.innerHTML = '';
 
-    changelogsRef.orderBy('Version', 'desc').get().then(function(querySnapshot) {
-        querySnapshot.forEach(function(doc) {
+    changelogsRef.orderBy('Version', 'desc').get().then(function (querySnapshot) {
+        querySnapshot.forEach(function (doc) {
             var data = doc.data();
 
             var row = document.createElement('tr');
@@ -174,7 +236,7 @@ function loadDataFromFirebase() {
 
             tableBody.appendChild(row);
         });
-    }).catch(function(error) {
+    }).catch(function (error) {
         console.log('Error getting changelogs:', error);
     });
 }

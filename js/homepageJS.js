@@ -18,9 +18,71 @@ const urlParams = new URLSearchParams(window.location.search);
 const sessionId = urlParams.get('sessionId');
 var selectedNameInDropDown;
 
+// Initialize the cache object
+let imageCache = {};
+
+// Update links for multiple tags
+updateImage('raeciLogo', 'raeci-logo', 'src');
+updateImage('shortcut-icon', 'raeci-logo', 'href');
+
+// Call the function to get the URL dynamically
+function updateImage(elementId, key, attrib) {
+  // Check if the image is already in the cache
+  if (imageCache.hasOwnProperty(key)) {
+    document.getElementById(elementId)[attrib] = imageCache[key];
+  } else {
+    fetchDataFromFirebaseDatabase('image-links', 'image-links', key)
+      .then((imageUrl) => {
+        // Update the element with the fetched image URL
+        document.getElementById(elementId)[attrib] = imageUrl;
+
+        // Cache the image URL for future use
+        imageCache[key] = imageUrl;
+      })
+      .catch((error) => {
+        console.error("Error fetching image URL for element ID", elementId, ":", error);
+      });
+  }
+}
+
+/**
+ * Description - Get a value from Firebase Database
+ * @param {String} collectionName - Collection Name
+ * @param {String} documentName - Document Name
+ * @param {String} key - Key's Name that has the required value
+ * @returns {Promise} A promise that resolves to the fetched value
+ */
+function fetchDataFromFirebaseDatabase(collectionName, documentName, key) {
+  return new Promise((resolve, reject) => {
+    const db = firebase.firestore();
+    const docRef = db.collection(collectionName).doc(documentName);
+
+    // Retrieve the document data
+    docRef.get().then((doc) => {
+      if (doc.exists) {
+        const data = doc.data();
+
+        // Check if the key exists in the document
+        if (data.hasOwnProperty(key)) {
+          const result = data[key];
+
+          // Resolve the promise with the result
+          resolve(result);
+        } else {
+          reject(new Error("Key not found in the document!"));
+        }
+      } else {
+        reject(new Error("No such document!"));
+      }
+    }).catch((error) => {
+      // Reject the promise with the error
+      reject(error);
+    });
+  });
+}
+
 // Listen for changes to the Firebase database
 firebase.database().ref('sessions/' + sessionId).once('value', function (snapshot) {
-  console.log(snapshot.val());
   // Check if selectedValue is present in sessionStorage
   var selectedValue = sessionStorage.getItem("selectedValue");
   if (selectedValue !== null && selectedValue !== undefined) {
@@ -66,10 +128,10 @@ function changeHeader(selectedValue) {
 }
 
 const form = document.querySelector("#check-in-form");
-
 form.addEventListener("submit", (e) => {
   e.preventDefault();
-  const activity = "Exercise: " + document.querySelector("#exercise").value + ", Learning: " + document.querySelector("#learning").value;
+  // const activity = "Exercise: " + document.querySelector("#exercise").value + ", Learning: " + document.querySelector("#learning").value;
+  const activity = document.querySelector("#learning").value;
   console.log(activity);
   form.reset();
 });
@@ -83,19 +145,21 @@ function logout() {
 }
 
 function handleCheckin() {
-  if (document.getElementById("exercise").value === "" || document.getElementById("learning") === "") {
+  if (document.getElementById("learning").value.trim() === "") {
     document.getElementById("ackMsg").innerHTML = "Oopsie! Don't forget your activity details! 😄";
     return;
   }
+
   const date = new Date();
   const dateString = `${date.getDate().toString().padStart(2, '0')}/${(date.getMonth() + 1).toString().padStart(2, '0')}/${date.getFullYear()}`;
   const timeString = date.toLocaleTimeString('en-GB');
   const name = sessionStorage.getItem("selectedValue");
-  const activity = "Exercise: " + document.querySelector("#exercise").value + " | Learning: " + document.querySelector("#learning").value;
+  // const activity = "Exercise: " + document.querySelector("#exercise").value + ", Learning: " + document.querySelector("#learning").value;
+  const activity = document.querySelector("#learning").value;
   const docId = date.toLocaleString('en-GB', { day: '2-digit', month: '2-digit', year: 'numeric', hour: '2-digit', minute: '2-digit' }).replace(/[/: ]/g, "");
 
   const db = firebase.firestore();
-  db.collection("checkins").doc(name + ": " + docId).set({
+  db.collection("LearningOnlyProd").doc(name + ": " + docId).set({
     date: dateString,
     time: timeString,
     name: name,
@@ -111,7 +175,7 @@ function handleCheckin() {
 }
 
 window.addEventListener("orientationchange", function () {
-  if (window.orientation == 90 || window.orientation == -90) {
+  if (window.innerHeight > window.innerWidth) {
     document.getElementById("landscape-message").style.display = "block";
   } else {
     document.getElementById("landscape-message").style.display = "none";
@@ -122,5 +186,5 @@ window.onload = function () {
   var loadingIcon = document.getElementById("loading-icon");
   setTimeout(function () {
     loadingIcon.style.display = "none";
-  }, 1500);
+  }, 300);
 };
