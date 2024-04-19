@@ -50,12 +50,14 @@ body {
 }
 
 header {
-  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   position: absolute;
-  top: 12%;
+  top: 30%;
   left: 50%;
-  transform: translateX(-50%);
-  width: 10%;
+  transform: translate(-50%, -50%);
 }
 
 header img {
@@ -65,10 +67,6 @@ header img {
 
 h1 {
   margin-top: 20px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100%;
   font-size: 35px;
   color: #af8545;
   text-align: center;
